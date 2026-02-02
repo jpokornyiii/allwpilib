@@ -5,7 +5,6 @@
 #include "Robot.h"
 
 Robot::Robot() {
-  
   wpi::SendableRegistry::AddChild(&m_drive, &m_leftMotor);
   wpi::SendableRegistry::AddChild(&m_drive, &m_rightMotor);
 
@@ -27,19 +26,19 @@ void Robot::RobotPeriodic() {}
 
 // This function is only once each time Autonomous is enabled
 void Robot::AutonomousInit() {
-    m_timer.Restart();
+  m_timer.Restart();
 }
 
 // This function is called periodically during autonomous mode
 void Robot::AutonomousPeriodic() {
-   // Drive for 2 seconds
-    if (m_timer.Get() < 2_s) {
-      // Drive forwards half speed, make sure to turn input squaring off
-      m_drive.ArcadeDrive(0.5, 0.0, false);
-    } else {
-      // Stop robot
-      m_drive.ArcadeDrive(0.0, 0.0, false);
-    }
+  // Drive for 2 seconds
+  if (m_timer.Get() < 2_s) {
+    // Drive forwards half speed, make sure to turn input squaring off
+    m_drive.ArcadeDrive(0.5, 0.0, false);
+  } else {
+    // Stop robot
+    m_drive.ArcadeDrive(0.0, 0.0, false);
+  }
 }
 
 // This function is only once each time telop is enabled
@@ -47,7 +46,8 @@ void Robot::TeleopInit() {}
 
 // This function is called periodically during teleop mode
 void Robot::TeleopPeriodic() {
-   m_drive.ArcadeDrive(-m_XboxController.GetLeftY(), -m_XboxController.GetRightX());
+  m_drive.ArcadeDrive(-m_XboxController.GetLeftY(),
+                      -m_XboxController.GetRightX());
 }
 
 #ifndef RUNNING_FRC_TESTS

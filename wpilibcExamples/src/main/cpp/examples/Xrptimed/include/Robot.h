@@ -5,10 +5,10 @@
 #pragma once
 
 #include <frc/TimedRobot.h>
+#include <frc/Timer.h>
+#include <frc/XboxController.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/xrp/XRPMotor.h>
-#include <frc/XboxController.h>
-#include <frc/Timer.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -26,6 +26,6 @@ class Robot : public frc::TimedRobot {
   frc::Timer m_timer;
 
   frc::DifferentialDrive m_drive{
-    [&](double output) { m_leftMotor.Set(output); },
-    [&](double output) { m_rightMotor.Set(output); }};
+      [&](double output) { m_leftMotor.Set(output); },
+      [&](double output) { m_rightMotor.Set(output); }};
 };
